@@ -20,57 +20,7 @@ A full-stack movie browsing application built with React, Express, and Tailwind 
 - npm or yarn
 - TMDB API Key (get one at [https://www.themoviedb.org/settings/api](https://www.themoviedb.org/settings/api))
 
-### Installation
 
-1. **Navigate to the project**
-   ```bash
-   cd "e:/fullstuck course/Movie app"
-   ```
-
-2. **Install backend dependencies**
-   ```bash
-   cd backend
-   npm install
-   ```
-
-3. **Install frontend dependencies**
-   ```bash
-   cd ../frontend
-   npm install
-   ```
-
-4. **Set up environment variables**
-   
-   Create a `.env` file in the backend directory:
-   ```bash
-   cd ../backend
-   # Copy the example file
-   cp .env.example .env
-   ```
-   
-   Edit `backend/.env` and add your TMDB API key:
-   ```
-   TMDB_API_KEY=your_actual_api_key_here
-   PORT=5000
-   ```
-
-### Running the Application
-
-**Terminal 1 - Start Backend:**
-```bash
-cd backend
-npm start
-```
-
-**Terminal 2 - Start Frontend:**
-```bash
-cd frontend
-npm run dev
-```
-
-The application will be available at:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:5000
 
 ## 📁 Project Structure
 
@@ -159,13 +109,7 @@ Movie app/
 - Dedicated favorites page
 - Badge showing favorite count in navigation
 
-## 🔒 Environment Variables
 
-Create a `.env` file in the **backend** directory with:
-
-```env
-TMDB_API_KEY=your_tmdb_api_key_here
-PORT=5000
 ```
 
 ## 📝 Getting a TMDB API Key
@@ -177,35 +121,6 @@ PORT=5000
 5. Fill in the required information
 6. Copy your API key and add it to `.env`
 
-## 🚀 Deployment
-
-### Backend Deployment
-Deploy the Express server to platforms like:
-- Heroku
-- Railway
-- Render
-- DigitalOcean
-
-### Frontend Deployment
-Deploy the React app to:
-- Vercel
-- Netlify
-- GitHub Pages
-
-Remember to update the API base URL in `frontend/src/services/api.js` for production.
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to submit issues and pull requests.
-
-## 📄 License
-
-This project is open source and available under the [ISC License](LICENSE).
-
-## 🙏 Acknowledgments
-
-- Movie data provided by [The Movie Database (TMDB)](https://www.themoviedb.org/)
-- Icons by [Lucide](https://lucide.dev/)
 
 ---
 
