@@ -23,12 +23,11 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 
 // CORS configuration
 const corsOptions = {
-  origin: NODE_ENV === 'production' 
-    ? [
-        'https://your-frontend-app.vercel.app',
-        'https://*.vercel.app'
-      ]
-    : '*', // Allow all in development
+  origin: [
+    'https://movie-app-i5x3.vercel.app',
+    'https://movie-app-zeta-weld.vercel.app',
+    'http://localhost:5173'  // For local development
+  ],
   methods: ['GET', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
