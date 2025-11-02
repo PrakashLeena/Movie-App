@@ -14,6 +14,24 @@ const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 app.use(cors());
 app.use(express.json());
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Welcome to the Movie App API',
+    endpoints: {
+      health: '/api/health',
+      popularMovies: '/api/movies/popular?page=1',
+      searchMovies: '/api/movies/search?q=query&page=1',
+      movieDetails: '/api/movies/:id',
+      movieCredits: '/api/movies/:id/credits',
+      movieVideos: '/api/movies/:id/videos',
+      movieReviews: '/api/movies/:id/reviews',
+      similarMovies: '/api/movies/:id/similar'
+    },
+    documentation: 'Check the API documentation for more details'
+  });
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
