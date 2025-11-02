@@ -51,37 +51,40 @@ export const movieApi = {
   // Get popular movies with pagination
   getPopularMovies: async (page = 1) => {
     try {
-      const response = await api.get('/movies/popular', {
+      const response = await api.get('/api/movies/popular', {
         params: { page }
       });
       return response.data;
     } catch (error) {
       console.error('Error fetching popular movies:', error);
-      throw error.response?.data || error.message;
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to fetch movies';
+      throw new Error(errorMessage);
     }
   },
 
   // Search movies
   searchMovies: async (query, page = 1) => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/movies/search`, {
+      const response = await api.get('/api/movies/search', {
         params: { q: query, page }
       });
       return response.data;
     } catch (error) {
       console.error('Error searching movies:', error);
-      throw error;
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to search movies';
+      throw new Error(errorMessage);
     }
   },
 
   // Get movie details
   getMovieDetails: async (id) => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/movies/${id}`);
+      const response = await api.get(`/api/movies/${id}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching movie details:', error);
-      throw error;
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to fetch movie details';
+      throw new Error(errorMessage);
     }
   }
 };

@@ -33,26 +33,26 @@ app.get('/', (req, res) => {
   res.json({
     message: 'Welcome to the Movie App API',
     endpoints: {
-      health: '/api/health',
-      popularMovies: '/api/movies/popular?page=1',
-      searchMovies: '/api/movies/search?q=query&page=1',
-      movieDetails: '/api/movies/:id',
-      movieCredits: '/api/movies/:id/credits',
-      movieVideos: '/api/movies/:id/videos',
-      movieReviews: '/api/movies/:id/reviews',
-      similarMovies: '/api/movies/:id/similar'
+      health: '/health',
+      popularMovies: '/movies/popular?page=1',
+      searchMovies: '/movies/search?q=query&page=1',
+      movieDetails: '/movies/:id',
+      movieCredits: '/movies/:id/credits',
+      movieVideos: '/movies/:id/videos',
+      movieReviews: '/movies/:id/reviews',
+      similarMovies: '/movies/:id/similar'
     },
     documentation: 'Check the API documentation for more details'
   });
 });
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
+app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
 });
 
 // Get popular movies with pagination
-app.get('/api/movies/popular', async (req, res) => {
+app.get('/movies/popular', async (req, res) => {
   try {
     const page = req.query.page || 1;
     const response = await axios.get(`${TMDB_BASE_URL}/movie/popular`, {
@@ -73,7 +73,7 @@ app.get('/api/movies/popular', async (req, res) => {
 });
 
 // Search movies
-app.get('/api/movies/search', async (req, res) => {
+app.get('/movies/search', async (req, res) => {
   try {
     const query = req.query.q;
     const page = req.query.page || 1;
@@ -101,7 +101,7 @@ app.get('/api/movies/search', async (req, res) => {
 });
 
 // Get movie details
-app.get('/api/movies/:id', async (req, res) => {
+app.get('/movies/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const response = await axios.get(`${TMDB_BASE_URL}/movie/${id}`, {
