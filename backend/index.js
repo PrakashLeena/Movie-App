@@ -10,13 +10,9 @@ const PORT = process.env.PORT || 5000;
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 
-// CORS configuration
+// CORS configuration - temporarily permissive for debugging
 const corsOptions = {
-  origin: [
-    'http://localhost:3000', // For local development
-    'https://your-frontend-app.vercel.app', // Your frontend Vercel URL
-    'https://*.vercel.app' // Allow all Vercel preview URLs
-  ],
+  origin: '*', // Temporarily allow all origins
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
@@ -24,6 +20,12 @@ const corsOptions = {
 
 // Middleware
 app.use(cors(corsOptions));
+
+// Log all requests for debugging
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.originalUrl}`);
+  next();
+});
 app.use(express.json());
 
 // Root route

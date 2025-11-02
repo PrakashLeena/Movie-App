@@ -11,14 +11,38 @@ const api = axios.create({
   },
 });
 
-// Add a request interceptor to handle errors
+// Add request interceptor
 api.interceptors.request.use(
   (config) => {
-    // You can add auth headers here if needed
-    // config.headers.Authorization = `Bearer ${token}`;
+    console.log('Request:', config.method.toUpperCase(), config.url);
     return config;
   },
   (error) => {
+    console.error('Request Error:', error);
+    return Promise.reject(error);
+  }
+);
+
+// Add response interceptor for better error handling
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.error('Response Error:', {
+        status: error.response.status,
+        statusText: error.response.statusText,
+        url: error.response.config.url,
+        data: error.response.data
+      });
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.error('No response received:', error.request);
+    } else {
+      // Something happened in setting up the request
+      console.error('Request setup error:', error.message);
+    }
     return Promise.reject(error);
   }
 );
