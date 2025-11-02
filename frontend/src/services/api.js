@@ -51,7 +51,7 @@ export const movieApi = {
   // Get popular movies with pagination
   getPopularMovies: async (page = 1) => {
     try {
-      const response = await api.get('/api/movies/popular', {
+      const response = await api.get('/movies/popular', {
         params: { page }
       });
       return response.data;
@@ -65,7 +65,7 @@ export const movieApi = {
   // Search movies
   searchMovies: async (query, page = 1) => {
     try {
-      const response = await api.get('/api/movies/search', {
+      const response = await api.get('/movies/search', {
         params: { q: query, page }
       });
       return response.data;
@@ -79,7 +79,7 @@ export const movieApi = {
   // Get movie details
   getMovieDetails: async (id) => {
     try {
-      const response = await api.get(`/api/movies/${id}`);
+      const response = await api.get(`/movies/${id}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching movie details:', error);
